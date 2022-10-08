@@ -1,6 +1,4 @@
-# Sample Hardhat Project
-
-Welcome to Rectangle DAO. 
+# Welcome to Rectangle DAO. 
 
 We have a Rectangle which is going to be governed by our own Rectangle DAO. 
 
