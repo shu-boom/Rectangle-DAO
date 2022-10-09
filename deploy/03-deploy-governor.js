@@ -30,4 +30,4 @@ module.exports = async (hre) => {
 
 };
 
-module.exports.tags = ['RectangleGoverner'];
+module.exports.tags = ['governor'];

@@ -14,4 +14,4 @@ module.exports = async (hre) => {
 
 };
 
-module.exports.tags = ['RectangleToken'];
+module.exports.tags = ['token'];
