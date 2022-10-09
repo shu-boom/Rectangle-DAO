@@ -1,0 +1,7 @@
+module.exports = {
+    MIN_DELAY: 3600,
+    VOTING_DELAY: 1,
+    VOTING_PERIOD: 50400,
+    QUORUM_PERCENTAGE: 50,
+    PROPOSAL_THRESHOLD: 0
+}
