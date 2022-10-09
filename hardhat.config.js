@@ -24,12 +24,16 @@ module.exports = {
   },
   networks: {
     hardhat: {
+      live: false,
       allowUnlimitedContractSize: true,
-      timeout: 1800000
+      timeout: 1800000,
+      tags: ["local"]
     },
     localhost: {
+      live: false,
       allowUnlimitedContractSize: true,
-      timeout: 1800000
+      timeout: 1800000,
+      tags: ["local"]
     }
   },
   namedAccounts: {
