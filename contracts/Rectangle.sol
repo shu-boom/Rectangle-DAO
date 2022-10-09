@@ -3,11 +3,11 @@ pragma solidity ^0.8.9;
 
 // Uncomment this line to use console.log
 // import "hardhat/console.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Rectangle {
+contract Rectangle is Ownable{
     uint public length;
     uint public width;
-    address public owner;
 
     event LengthChanged(uint length);
     event WidthChanged(uint width);
@@ -15,21 +15,18 @@ contract Rectangle {
     constructor(uint _length, uint _width) {
         length = _length;
         width = _width;
-        owner = msg.sender;
     }
 
     function getArea() public view returns(uint area){
         area = length * width;
     }
   
-    function setLength(uint _newLength) public {
-        require(msg.sender == owner, "Only Owner");
+    function setLength(uint _newLength) public onlyOwner{
         length = _newLength;
         emit LengthChanged(length);
     }
 
-     function setWidth(uint _newWidth) public {
-        require(msg.sender == owner, "Only Owner");
+     function setWidth(uint _newWidth) public onlyOwner{
         width = _newWidth;
         emit WidthChanged(width);
     }

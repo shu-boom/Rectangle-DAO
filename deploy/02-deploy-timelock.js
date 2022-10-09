@@ -19,4 +19,4 @@ module.exports = async (hre) => {
 
 };
 
-module.exports.tags = ['TimeLock'];
+module.exports.tags = ['timelock'];
