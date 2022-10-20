@@ -29,7 +29,7 @@ const _propose = async function (targets, values, calldatas, description) {
     const proposeTxReceipt = await proposeTx.wait();
     const proposalCreatedEvent = proposeTxReceipt.events?.find((x) => {return x.event == "ProposalCreated"})
     const [proposalId] = proposalCreatedEvent.args;
-    console.log(proposalId);
+    return proposalId;
 }
 
 

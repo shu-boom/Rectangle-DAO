@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "solhint 'contracts/**/*.sol'",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "propose": "npx hardhat run scripts/examples/propose.js --network localhost",
+    "vote": "npx hardhat run scripts/examples/vote.js --network localhost",
+    "execute": "npx hardhat run scripts/examples/execute.js --network localhost"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.7.3",

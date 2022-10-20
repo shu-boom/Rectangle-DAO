@@ -37,6 +37,7 @@ module.exports = {
     }
   },
   namedAccounts: {
-    deployer: 0
+    deployer: 0,
+    alice: 1
   }
 };

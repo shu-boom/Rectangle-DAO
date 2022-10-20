@@ -15,7 +15,10 @@ const _execute = async function (targets, values, calldatas, description) {
     const {deployer} = await getNamedAccounts();   
     const rectangleGoverner = await ethers.getContract("RectangleGoverner", deployer);
     const executeTx = await rectangleGoverner.execute(targets, values, calldatas, description);
-    await executeTx.wait();
+    const executeTxReceipt = await executeTx.wait();
+    const proposalCreatedEvent = executeTxReceipt.events?.find((x) => {return x.event == "ProposalExecuted"})
+    const [proposalId] = proposalCreatedEvent.args;
+    return proposalId;
 }
 
 
