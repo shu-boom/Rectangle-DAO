@@ -1,10 +1,13 @@
+const { ethers } = require("hardhat");
+
 module.exports = async (hre) => {
-    const {getNamedAccounts, deployments} = hre;
+    const {getNamedAccounts, deployments, network} = hre;
     const {deployer} = await getNamedAccounts();
-    const token = await ethers.getContract("RectangleToken", deployer);
     console.log("----------------------------")
-    console.log("Delegating power to deployer")
-    await token.delegate(deployer)
+    const contract =  await ethers.getContract("RectangleToken", deployer); // await ethers.getContractAt("RectangleToken", rectangleToken.address)
+    const waitConfirmations =  network.config.waitConfirmations || 1;
+    const delegateTx = await contract.delegate(deployer)
+    await delegateTx.wait(waitConfirmations);
 };
 
 module.exports.tags = ['delegate'];

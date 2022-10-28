@@ -10,15 +10,15 @@ const hre = require("hardhat");
 /**
  * Governer API contains a propose method: 
  */
-const _vote = async function (proposalId, vote, account) {
+async function _vote(proposalId, vote, account) {
     const rectangleGoverner = await ethers.getContract("RectangleGoverner"); 
     try {
         const signer = await ethers.getSigner(account);
         console.log("Voting.....")
-        const proposeTx = await rectangleGoverner.connect(signer).castVote(proposalId, vote);
-        const proposeTxReceipt = await proposeTx.wait();
-        const proposalCreatedEvent = proposeTxReceipt.events?.find((x) => {return x.event == "VoteCast"})
-        const [voter,, support, weight, reason] = proposalCreatedEvent.args;
+        const voteTx = await rectangleGoverner.connect(signer).castVote(proposalId, vote);
+        const voteTxReceipt = await voteTx.wait();
+        const voteCastEvent = voteTxReceipt.events?.find((x) => {return x.event == "VoteCast"})
+        const [voter,, support, weight, reason] = voteCastEvent.args;
         return {
             "voter": voter,
             "support": support,
@@ -28,7 +28,6 @@ const _vote = async function (proposalId, vote, account) {
     } catch (error) {
         console.log(error);
     } 
-  
 }
 
 

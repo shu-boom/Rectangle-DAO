@@ -21,10 +21,8 @@ const hre = require("hardhat");
  *     const calldatas = [rectangle.interface.encodeFunctionData('setLength', [newLength])];
  *     const description = "This is a test 2";
  */
-const _propose = async function (targets, values, calldatas, description) {
-    const {getNamedAccounts, deployments} = hre;
-    const {deployer} = await getNamedAccounts();   
-    const rectangleGoverner = await ethers.getContract("RectangleGoverner", deployer);  
+async function _propose(targets, values, calldatas, description) {
+    const rectangleGoverner = await ethers.getContract("RectangleGoverner");  
     const proposeTx = await rectangleGoverner.propose(targets, values, calldatas, description);
     const proposeTxReceipt = await proposeTx.wait();
     const proposalCreatedEvent = proposeTxReceipt.events?.find((x) => {return x.event == "ProposalCreated"})

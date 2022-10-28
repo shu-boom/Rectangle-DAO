@@ -103,13 +103,4 @@ contract RectangleGoverner is Governor, GovernorSettings, GovernorCountingSimple
     {
         return super.supportsInterface(interfaceId);
     }
-
-    function quorumReached(uint256 proposalId)
-        public
-        view
-        returns (bool)
-    {
-        return super._quorumReached(proposalId);
-    }
-
 }

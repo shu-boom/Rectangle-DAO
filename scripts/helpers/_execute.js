@@ -10,8 +10,8 @@ const hre = require("hardhat");
 /**
  * Governer API contains an execute method: 
  */
-const _execute = async function (targets, values, calldatas, description) {
-    const {getNamedAccounts, deployments} = hre;
+async function _execute(targets, values, calldatas, description) {
+    const {getNamedAccounts, deployments, network} = hre;
     const {deployer} = await getNamedAccounts();   
     const rectangleGoverner = await ethers.getContract("RectangleGoverner", deployer);
     const executeTx = await rectangleGoverner.execute(targets, values, calldatas, description);
