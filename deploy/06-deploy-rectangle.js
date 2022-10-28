@@ -1,7 +1,7 @@
 const { ethers } = require("hardhat");
 
 module.exports = async (hre) => {
-    const {getNamedAccounts, deployments} = hre;
+    const {getNamedAccounts, deployments, network} = hre;
     const {deploy, get} = deployments;
     const {deployer} = await getNamedAccounts();
     const length = 2;
@@ -15,6 +15,7 @@ module.exports = async (hre) => {
         width,
       ],
       log: true,
+      waitConfirmations: network['config'].waitConfirmations || 1,
     });
  
     const rectangle = await ethers.getContract("Rectangle", deployer);
