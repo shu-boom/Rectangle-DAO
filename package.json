@@ -9,12 +9,19 @@
     "prepare": "husky install",
     "propose": "npx hardhat run scripts/examples/propose.js --network localhost",
     "vote": "npx hardhat run scripts/examples/vote.js --network localhost",
-    "execute": "npx hardhat run scripts/examples/execute.js --network localhost"
+    "execute": "npx hardhat run scripts/examples/execute.js --network localhost",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "next-lint": "next lint"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.7.3",
     "dotenv": "^16.0.3",
-    "hardhat": "^2.11.2"
+    "hardhat": "^2.11.2",
+    "next": "13.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
@@ -24,6 +31,8 @@
     "hardhat-contract-sizer": "^2.6.1",
     "hardhat-deploy": "^0.11.18",
     "husky": "^8.0.1",
-    "solidity-coverage": "^0.8.2"
+    "solidity-coverage": "^0.8.2",
+    "eslint": "8.26.0",
+    "eslint-config-next": "13.0.0"
   }
 }
