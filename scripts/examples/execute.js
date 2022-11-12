@@ -43,7 +43,6 @@ async function voteOnProposal(proposalId){
   const { deployer } = await getNamedAccounts();
   const signer = await ethers.getSigner(deployer);
   await rectangleGoverner.connect(signer).castVote(proposalId, 1);
-  console.log("Quorum reached for proposal : ", await rectangleGoverner.quorumReached(proposalId));
   console.log("Moving VOTING_PERIOD amount of blocks forward.... ");
   await mineBlocks(VOTING_PERIOD);
 }
