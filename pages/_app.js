@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
 
   return (<>
       <DAppProvider config={config}>
-        <input type="checkbox" className="toggle absolute top-2 right-2" onClick={toggleTheme}/>
+        <input type="checkbox" className="toggle absolute top-2 left-2" onClick={toggleTheme}/>
         <Connect />
         <Nav />
         <Component {...pageProps} />

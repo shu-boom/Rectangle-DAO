@@ -9,8 +9,7 @@ export default function Connect() {
   const { activateBrowserWallet, deactivate, account } = useEthers()
   const etherBalance = useEtherBalance(account)
   return (
-    <div>
-      <div className="absolute top-16 right-3">
+      <div className="absolute top-2 right-2">
         {account && etherBalance ? (
           <div className="dropdown dropdown-end">
             <label tabIndex={0}>
@@ -43,6 +42,5 @@ export default function Connect() {
           </button>
         )}
       </div>
-    </div>
   )
 }

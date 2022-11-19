@@ -19,6 +19,7 @@
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
     "@openzeppelin/contracts": "^4.7.3",
+    "d3-zoom": "^3.0.0",
     "daisyui": "^2.40.1",
     "dotenv": "^16.0.3",
     "hardhat": "^2.11.2",
