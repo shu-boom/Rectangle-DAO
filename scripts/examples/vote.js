@@ -51,7 +51,6 @@ async function logVotingDetails(details, proposalId, account) {
   console.log("Support : ", details.support);
   console.log("Weight : ", details.weight);
   console.log("Voter : ", details.voter);
-  console.log("Quorum reached for proposal : ", await rectangleGoverner.quorumReached(proposalId));
 }
 
 async function logBalanceAndVotingPower(account){
@@ -96,7 +95,6 @@ async function vote() {
   let proposal1Details = await generateProposalDetailsForLength(4);
   let proposal1Id = await createNewProposal(proposal1Details.targets, proposal1Details.values, proposal1Details.calldata, proposal1Details.description);
 
-  console.log("Quorum reached for proposal : ", await rectangleGoverner.quorumReached(proposal1Id));
   console.log("Account details of deployer.......")
   await logBalanceAndVotingPower(deployer);
   
@@ -133,8 +131,6 @@ async function vote() {
 
   console.log("State of proposal 1",  await rectangleGoverner.state(proposal1Id))
   console.log("State of proposal 2",  await rectangleGoverner.state(proposal2Id))
-  console.log("Quorum reached for proposal 1: ", await rectangleGoverner.quorumReached(proposal1Id));
-  console.log("Quorum reached for proposal 2: ", await rectangleGoverner.quorumReached(proposal2Id));
 
   console.log("Transferring All balance back to deployer.......")
   await transferAmountAndLogDetails(alice, deployer, await rectangleToken.balanceOf(alice));

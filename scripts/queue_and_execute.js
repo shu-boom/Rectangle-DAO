@@ -46,7 +46,8 @@ async function execute(targets, values, calldata, hash) {
 });
 
 module.exports = {
-    queue
+    queue,
+    execute
 }
 
 

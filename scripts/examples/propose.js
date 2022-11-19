@@ -50,8 +50,6 @@ async function printProposalDetails(proposalId) {
   console.log("Proposal Snapshot (Voting Start Block) ", await rectangleGoverner.proposalSnapshot(proposalId));
   console.log("Proposal Deadline (Voting Deadline Block) ", await rectangleGoverner.proposalDeadline(proposalId));
   console.log("The quorum required to pass the proposal should be 50% of total voting supply: ", await rectangleGoverner.quorum(--blockNum));
-  console.log("Quorum reached for proposal : ", await rectangleGoverner.quorumReached(proposalId));
-  console.log("As we can see the quorum for this proposal is not reached because no one has voted on this proposal")
   console.log("Please see voting example by running: npm run vote")
 
 }
