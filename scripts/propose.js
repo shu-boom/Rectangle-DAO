@@ -29,7 +29,7 @@ async function propose(targets, values, calldatas, descriptions) {
 }
 
 async function storeProposal(proposalId) {
-    const chainId = await getChainId();
+    const chainId = network.config.chainId.toString();
     console.log(chainId);
     let proposals;
     if(fs.existsSync(PROPOSAL_FILE_NAME)){
