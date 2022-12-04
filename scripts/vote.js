@@ -1,4 +1,3 @@
-
 const { ethers, network, getNamedAccounts } = require("hardhat");
 const { VOTING_PERIOD, LOCAL_NETWORK_TAG, PROPOSAL_FILE_NAME } = require("../global-variables.js");
 const { _vote } = require("./helpers/_vote.js");
@@ -25,7 +24,7 @@ async function vote(proposalId, vote, account) {
 
 async function retrieveId() {
     if(fs.existsSync(PROPOSAL_FILE_NAME)){
-        const chainId = await getChainId();
+        const chainId = network.config.chainId.toString();
         console.log(chainId)
         proposals = JSON.parse(fs.readFileSync(PROPOSAL_FILE_NAME, "utf8"));
         const proposalArray =  proposals[chainId]
