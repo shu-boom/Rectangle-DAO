@@ -10,8 +10,6 @@ module.exports = async (hre) => {
     const timeLock = await ethers.getContract("TimeLock", deployer);
     const rectangleGoverner = await ethers.getContract("RectangleGoverner", deployer);
 
-    // TimelockController uses an AccessControl setup that we need to understand in order to set up roles.
-
     // The Proposer role is in charge of queueing operations: this is the role the Governor instance should be granted, 
     // and it should likely be the only proposer in the system.
     const proposerRole = await timeLock.PROPOSER_ROLE();

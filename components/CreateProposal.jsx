@@ -13,26 +13,28 @@ export default function CreateProposal(props) {
   const [dimension, setDimension] = useState("");
   const [value, setValue] = useState("");
   const [description, setDescription] = useState("");
+  const [showLoadingButton, setShowLoadingButton] = useState(false); //same as creating your state variable where "Next" is the default value for buttonText and setButtonText is the setter function for your state variable instead of setState
   const { chainId, account } = useEthers();
   const rectangleGoverner = new ethers.Contract(RECTANGLE_GOVERNER_ADDRESS_GOERLI, RectangleGovernerABI.abi, ethers.getDefaultProvider(chainId));
   const { state, send } = useContractFunction(rectangleGoverner, 'propose', { transactionName: 'CreateProposal' });
-  const [showLoadingButton, setShowLoadingButton] = useState(false); //same as creating your state variable where "Next" is the default value for buttonText and setButtonText is the setter function for your state variable instead of setState
   const router = useRouter();
 
   useEffect(()=>{
     if(state.status == 'Success'){
-      notify("Success!", "Thanks for submitting a proposal (:")
       setTimeout(()=>{
         resetCreateProposalForm();
         setShowLoadingButton(false);
         refreshProposals(true);
-      }, 1000);  
+      }, 1200);  
     }
 
     if(state.status == 'Fail' || state.status == 'Exception' ) {
-      resetCreateProposalForm();
-      setShowLoadingButton(false);
       notify("Error!", state.errorMessage)
+      setTimeout(()=>{
+        resetCreateProposalForm();
+        setShowLoadingButton(false);
+        resetCreateProposalForm();
+      }, 1200); 
     }
 
     if(state.status != 'None'){
@@ -110,9 +112,9 @@ export default function CreateProposal(props) {
           </label>
           <input
             type="number"
+            min="1"
             placeholder="value in px"
             className="input input-bordered w-full max-w-xs"
-            min="1"
             required
             onChange={e => setValue(e.target.value)}
             value={value}

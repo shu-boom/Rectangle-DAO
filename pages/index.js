@@ -24,13 +24,13 @@ export default function Home(props) {
           {
           !(chainId == `${Goerli.chainId}`)
           ?
-            <main className='relative top-10 h-screen w-screen overflow-y-hidden'>
+            <main className='relative top-16 h-screen w-screen overflow-y-hidden'>
                 <div className='absolute top-1/2 w-full text-center'>
                     <p>The current network is not supported. Please switch metamask to Goerli network!</p>
                 </div>
             </main>
           :
-            <main className='flex flex-row relative top-10 h-screen overflow-y-hidden'>
+            <main className='flex flex-row relative top-16 h-screen overflow-y-hidden'>
                 <div className="basis-2/3">
                   <Rectangle data={props.dimensions}/>
                 </div>

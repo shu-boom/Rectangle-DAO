@@ -14,7 +14,6 @@ import CreateProposal from '../components/CreateProposal'
 import BigNumber from "bignumber.js";
 import { useRouter } from 'next/router'
 
-
 const STATUS_MSG = [
     "Pending",
     "Active",
@@ -23,7 +22,8 @@ const STATUS_MSG = [
     "Succeeded",
     "Queued",
     "Expired",
-    "Executed"]
+    "Executed"
+  ]
     
 export default function Propose(props) {
   const { chainId } = useEthers()
@@ -50,13 +50,13 @@ export default function Propose(props) {
           {
           !(chainId == `${Goerli.chainId}`)
           ?
-            <main className='relative top-10 h-screen w-screen'>
+            <main className='relative top-16 h-screen w-screen'>
                 <div className='absolute top-1/2 w-full text-center'>
                     <p>The current network is not supported. Please switch metamask to Goerli network!</p>
                 </div>
             </main>
           :
-            <main className='flex flex-row relative top-14 h-screen overflow-y-hidden'>
+            <main className='flex flex-row relative top-16 h-screen overflow-y-hidden'>
                 <div className="basis-2/3 overflow-y-auto scrollbar-hide">
                   {isRefreshingData ? 
                     <progress className="progress progress-primary	w-60 left-1/3 top-1/2"></progress>
@@ -89,7 +89,7 @@ export async function getServerSideProps() {
         const proposal = proposalEvents[i];
         const [proposalId, proposer, targets, values, signatures, calldatas, startBlock, endBlock, description] = proposal.args;
         const status = await rectangleGoverner.state(proposalId);
-        const quorum = await rectangleGoverner.quorum(startBlock);  
+        const quorum = await rectangleGoverner.quorum(startBlock.sub(1));  
         const quorumFormatted = new BigNumber(ethers.utils.formatEther(quorum)).integerValue();
         proposals.unshift({
             proposalId: proposalId.toHexString(),
@@ -99,6 +99,7 @@ export async function getServerSideProps() {
             values: values,
             startBlock: startBlock.toString(),
             endBlock: endBlock.toString(),
+            calldatas: calldatas,
             status: STATUS_MSG[status],
             quorum: quorumFormatted,
             votes: {
@@ -138,6 +139,9 @@ export async function getServerSideProps() {
       const votesForProposalId = votes.filter((vote)=>{
         return vote.proposalId === proposalId
       })
+
+      console.log("voting on proposal ID :", proposalId);
+      console.log("votes for proposal ID", votesForProposalId);
 
       const forVotes = votesForProposalId.filter((vote)=>{
         return vote.support == 1

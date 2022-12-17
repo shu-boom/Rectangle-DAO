@@ -7,7 +7,7 @@ import {useEffect} from 'react';
 
 
 export default function Nav() {
-    const [theme, setTheme] = useLocalStorage("theme", "dark");
+    const [theme, setTheme] = useLocalStorage("theme", "light");
     
     const toggleTheme = () => {
       setTheme(theme === "dark" ? "light" : "dark");
