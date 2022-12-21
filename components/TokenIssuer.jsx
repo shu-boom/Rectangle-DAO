@@ -26,12 +26,13 @@ export default function TokenIssuer(props) {
   useEffect(() => {
     (async () => {
       if(window!=undefined && window.ethereum != undefined && chainId == Goerli.chainId && account != undefined && delegateTokens){   
-        console.log("Delegating");
+        notify("Thanks For Buying!", `Self delegating tokens`);
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const rectangleToken = new ethers.Contract(RECTANGLE_TOKEN_ADDRESS_GOERLI, RectangleTokenABI.abi, provider);
         const delegate = await rectangleToken.connect(signer).delegate(account);
         await delegate.wait();
+        notify("Tokens Delegation complete", ``);
         setDelegateTokens(false);
       }
     })();
@@ -43,7 +44,6 @@ export default function TokenIssuer(props) {
 
   useEffect(() => {
     if(window!=undefined && window.ethereum != undefined && chainId == Goerli.chainId && account != undefined){   
-        console.log("I am called");
         const rectangleToken = new ethers.Contract(RECTANGLE_TOKEN_ADDRESS_GOERLI, RectangleTokenABI.abi, new ethers.providers.Web3Provider(window.ethereum));
         rectangleToken.balanceOf(MASTER_TOKEN_ACCOUNT).then(totalAmountLeft =>{
           setTotalAmountLeft(ethers.utils.formatEther(totalAmountLeft))
@@ -88,11 +88,7 @@ export default function TokenIssuer(props) {
 
   const sendTokens = (e)=>{
     e.preventDefault();
-    
-    console.log("need to send value", value);
-    console.log("address ", account);
-
-    if(window.ethereum != undefined &&  value != 0){
+    if(window.ethereum != undefined &&  value != 0 && account != undefined){
       send(value);
     }
   }
@@ -100,8 +96,8 @@ export default function TokenIssuer(props) {
   return (
     <div className="flex justify-center">
       <div>
-        <div className='mb-4'>
-          <h1 className='text-3xl'>Get Tokens!</h1>
+        <div className='mb-4 my-8'>
+          <h1 className='text-3xl'>Tokens</h1>
         </div>
         <form className="flex flex-col" onSubmit={sendTokens}>
           <div className="form-control">
@@ -129,7 +125,7 @@ export default function TokenIssuer(props) {
           {showLoadingButton ?
            <button disabled className="btn btn-primary loading">{state.status}</button>
             :
-           <input type="submit" value="Send Tokens" disabled={value==0} className="btn btn-primary" />}
+           <input type="submit" value="Send Tokens" disabled={value==0 || account==undefined} className="btn btn-primary" />}
         </div>
         </form>
       </div>

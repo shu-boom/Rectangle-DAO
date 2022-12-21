@@ -9,9 +9,9 @@ export default function Connect() {
   const { activateBrowserWallet, deactivate, account } = useEthers()
   const etherBalance = useEtherBalance(account)
   return (
-      <div className="top-2 right-4 mb-4 fixed">
+      <div className="top-2 right-4 mb-4 fixed z-10">
         {account && etherBalance ? (
-          <div className="dropdown dropdown-end">
+          <div className="dropdown dropdown-end cursor-pointer">
             <label tabIndex={0}>
               <UserIcon
                 className="mr-3 h-10 w-10 fill-accent"
@@ -23,13 +23,13 @@ export default function Connect() {
               className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4"
             >
               <li>
-                <a> <UserIcon className="mr-3 h-5 w-5"/> {truncateEthAddress(account)}</a>           
+                <a> <UserIcon className="mr-3 h-5 w-5 cursor-pointer"/> {truncateEthAddress(account)}</a>           
               </li>
               <li>
-                <a> <WalletIcon className="mr-3 h-5 w-5"/> {formatEther(etherBalance.sub(etherBalance.mod(1e14)))}</a>
+                <a> <WalletIcon className="mr-3 h-5 w-5 cursor-pointer"/> {formatEther(etherBalance.sub(etherBalance.mod(1e14)))}</a>
               </li>
               <li>
-                <a onClick={() => deactivate()}> <ArrowLeftOnRectangleIcon className="mr-3 h-5 w-5"/> Disconnect</a>
+                <a onClick={() => deactivate()}> <ArrowLeftOnRectangleIcon className="mr-3 h-5 w-5 cursor-pointer"/> Disconnect</a>
               </li>
             </ul>
           </div>

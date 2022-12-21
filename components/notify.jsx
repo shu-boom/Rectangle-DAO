@@ -11,6 +11,6 @@ const notify = (heading, content) => toast.custom((t)=>(
       </div>
     </div>
   ),
-  { id: "unique-notification", position: "top-center" }
+  { id: "unique-notification", position: "top-left" }
 )
 export default notify;

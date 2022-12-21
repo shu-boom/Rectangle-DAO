@@ -19,15 +19,15 @@ export default function Nav() {
     }, [theme]);
 
     return (
-        <nav className='flex justify-center fixed w-screen mt-2 mb-4'>
+        <nav className='flex justify-center fixed w-screen mt-2 mb-4 z-10'>
           <div>
             <input type="checkbox" className="toggle fixed top-2 left-4" onClick={toggleTheme}/>
           </div>
           <div className='flex space-x-8'>
-            <Link href="/" className='flex-1 hover:bg-primary hover:text-primary-content p-2 rounded-md'>Home</Link>
-            <Link href="/token" className='flex-1 hover:bg-primary hover:text-primary-content p-2 rounded-md w-fit'>Tokens</Link>
-            <Link href="/propose" className='flex-1 hover:bg-primary hover:text-primary-content p-2 rounded-md'>Proposals</Link>
-            <Link href="/about" className='flex-1 hover:bg-primary hover:text-primary-content p-2 rounded-md'>About</Link>
+            <Link href="/" className='flex-1 hover:bg-primary cursor-pointer hover:text-primary-content p-2 rounded-md'>Home</Link>
+            <Link href="/token" className='flex-1 hover:bg-primary  cursor-pointer hover:text-primary-content p-2 rounded-md w-fit'>Tokens</Link>
+            <Link href="/propose" className='flex-1 hover:bg-primary  cursor-pointer hover:text-primary-content p-2 rounded-md'>Proposals</Link>
+            <Link href="/about" className='flex-1 hover:bg-primary cursor-pointer hover:text-primary-content p-2 rounded-md'>About</Link>
           </div>
           <div>
             <Connect />

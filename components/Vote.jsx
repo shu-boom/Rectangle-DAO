@@ -47,21 +47,25 @@ export default function Vote(props) {
 
     const voteFor = () => async (event) => {
         const {status, proposalId} = proposal;
+        if(account == null){
+            notify("ERROR", "Please connect to metamask wallet");
+            return;
+        }
         if(status == 'Active'){
           send(proposalId, 1);
           setCurrentlyVotingOnProposalId(proposalId)
-        }else{
-          notify("Thanks for interest!", `Proposal is not active :(`);
         }
     }
 
     const voteAgainst = () => async (event) => {
         const {status, proposalId} = proposal;
+        if(account == null){
+            notify("ERROR", "Please connect to metamask wallet");
+            return;
+        }
         if(status == 'Active'){
-          send(proposalId, 0);
-          setCurrentlyVotingOnProposalId(proposalId)
-        }else{
-          notify("Thanks for interest!", `Proposal is not active :(`);
+            send(proposalId, 0);
+            setCurrentlyVotingOnProposalId(proposalId)
         }
     }
 

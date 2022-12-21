@@ -43,6 +43,10 @@ export default function Execute(props) {
 
 
     const execute = () => async (event) => {
+        if(account == null){
+            notify("ERROR", "Please connect to metamask wallet");
+            return;
+        }
         const {status, proposalId} = proposal;
         let targets;
         let values;
