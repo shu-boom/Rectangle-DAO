@@ -5,6 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/draft-ERC20Permit.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "hardhat/console.sol";
 
 contract RectangleToken is ERC20, ERC20Permit, ERC20Votes, Ownable {
     constructor() ERC20("RectangleToken", "RECT") ERC20Permit("RectangleToken") {
@@ -16,6 +17,31 @@ contract RectangleToken is ERC20, ERC20Permit, ERC20Votes, Ownable {
         override(ERC20, ERC20Votes)
     {
         super._afterTokenTransfer(from, to, amount);
+
+        console.log(
+            "from ",
+            from
+        );
+
+        console.log(
+            "to ",
+            to
+        );
+
+        console.log(
+            "delegates(to) ",
+            delegates(to)
+        );
+    
+
+        console.log(
+            "balance of ",
+            balanceOf(to)
+        );
+    
+        if(from == address(0) && to != address(0) && delegates(to) == address(0)) {
+            _delegate(to, to);
+        }
     }
 
     function _mint(address to, uint256 amount)

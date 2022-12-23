@@ -14,7 +14,7 @@ export default function Rectangle(props) {
   return (
     <div className="flex h-3/4 bg-neutral m-10">
       <svg className="flex-grow">
-        <g ref={svgContainer} className="fill-blue-500">
+        <g ref={svgContainer} className="fill-primary">
           <rect width={width} height={length} />
         </g>
       </svg>
